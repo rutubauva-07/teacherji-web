@@ -35,21 +35,7 @@
     }
     h1,h2,h3,h4,h5,h6,.btn,.logo-text { font-family: 'Nunito', sans-serif !important; font-weight: 800; }
 
-    /* Floating Background */
-    .bg-circle {
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.15;
-      pointer-events: none;
-      z-index: -1;
-      animation: float 20s infinite ease-in-out;
-    }
-    .c1 { width:600px; height:600px; background:#00d4ff; top:-200px; left:-150px; }
-    .c2 { width:800px; height:800px; background:#8cd867; bottom:-300px; right:-200px; }
-    .c3 { width:500px; height:500px; background:#00d4ff; top:40%; left:70%; }
-    @keyframes float { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-30px) rotate(5deg); } }
-
-    /* Slimmer & Perfectly Centered Navbar */
+    /* Navbar */
     header {
       position: fixed;
       top: 0;
@@ -58,7 +44,7 @@
       background: rgba(255,255,255,0.94);
       border-bottom: 1px solid rgba(0,212,255,0.18);
       z-index: 1000;
-      height: 70px; /* Slimmer */
+      height: 70px;
     }
     nav {
       max-width: 1400px;
@@ -74,10 +60,9 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      height: 100%;
     }
     .logo-img {
-      height: 48px; /* Smaller for slimmer navbar */
+      height: 48px;
       width: auto;
       transition: transform 0.3s ease;
     }
@@ -92,21 +77,12 @@
       margin-top: 2px;
     }
 
-    .nav-links {
+    .nav-buttons {
       display: flex;
       align-items: center;
-      gap: 36px;
-      height: 100%;
+      gap: 20px;
     }
-    .nav-links a {
-      font-weight: 700;
-      color: var(--gray-800);
-      transition: all 0.3s;
-      padding: 0 4px;
-    }
-    .nav-links a:hover { color: var(--blue); }
 
-    /* Buttons */
     .btn {
       padding: 12px 32px;
       border-radius: 50px;
@@ -115,7 +91,6 @@
       cursor: pointer;
       transition: all 0.4s ease;
       border: none;
-      overflow: hidden;
       text-decoration: none;
       display: inline-block;
     }
@@ -182,6 +157,7 @@
       -webkit-text-fill-color: transparent;
     }
 
+    /* Glass Cards */
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
@@ -215,47 +191,205 @@
     .ic-blue { background: var(--gradient-blue); }
     .ic-green { background: var(--gradient-green); }
 
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-      gap: 40px;
-      margin-top: 60px;
+    /* Premium Features */
+    .premium-section {
+      padding: 140px 40px;
+      background: #f8faff;
+      max-width: 1400px;
+      margin: 0 auto;
     }
-    .price-card {
-      background: white;
+
+    .main-tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 60px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 10px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .main-tab {
+      flex: 1;
+      padding: 18px 32px;
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 700;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      color: var(--gray-800);
+    }
+
+    .main-tab.active {
+      background: var(--gradient-blue);
+      color: white;
+      box-shadow: 0 10px 30px rgba(0,212,255,0.4);
+    }
+
+    .main-tab:hover:not(.active) {
+      background: rgba(0,212,255,0.1);
+    }
+
+    .premium-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .splash-area {
+      position: sticky;
+      top: 100px;
+    }
+
+    .tab-container {
+      display: flex;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 10px;
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    .tab-btn {
+      flex: 1;
+      padding: 14px 20px;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: transparent;
+      color: var(--gray-800);
+    }
+
+    .tab-btn.active {
+      background: var(--gradient-blue);
+      color: white;
+      box-shadow: 0 8px 25px rgba(0,212,255,0.4);
+    }
+
+    .tab-btn:hover:not(.active) {
+      background: rgba(0,212,255,0.1);
+    }
+
+    .splash-wrapper {
+      position: relative;
       border-radius: 32px;
       overflow: hidden;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.1);
-      transition: all 0.5s;
-      position: relative;
+      box-shadow: 0 30px 70px rgba(0,0,0,0.15);
     }
-    .price-card:hover { transform: translateY(-10px); }
-    .popular {
-      transform: scale(1.08);
-      border: 4px solid var(--blue);
-      box-shadow: 0 40px 80px rgba(0,212,255,0.3);
-    }
-    .popular::before {
-      content: "HAPPY CHOICE";
-      position: absolute;
-      top: 20px;
-      right: -45px;
-      background: var(--green);
-      color: white;
-      padding: 10px 60px;
-      font-size: 0.95rem;
-      font-weight: 700;
-      transform: rotate(45deg);
-      z-index: 2;
-    }
-    .price-header {
-      padding: 50px 30px;
-      text-align: center;
-      color: white;
-    }
-    .ph-blue { background: var(--gradient-blue); }
-    .ph-green { background: var(--gradient-green); }
 
+    .splash-img {
+      width: 100%;
+      height: 580px;
+      object-fit: cover;
+      transition: opacity 0.6s ease;
+    }
+
+    .splash-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.7), transparent 50%);
+    }
+
+    .splash-text {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      color: white;
+    }
+
+    .splash-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .splash-desc {
+      font-size: 1.3rem;
+      opacity: 0.95;
+    }
+
+    .features-list-wrapper {
+      height: 780px;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    .features-list-wrapper::-webkit-scrollbar {
+      width: 8px;
+    }
+    .features-list-wrapper::-webkit-scrollbar-track {
+      background: rgba(0,0,0,0.05);
+      border-radius: 10px;
+    }
+    .features-list-wrapper::-webkit-scrollbar-thumb {
+      background: rgba(0,212,255,0.3);
+      border-radius: 10px;
+    }
+
+    .feature-item {
+      background: white;
+      border-radius: 24px;
+      padding: 32px;
+      margin-bottom: 24px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,212,255,0.2);
+      cursor: pointer;
+      transition: all 0.4s ease;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(0,212,255,0.15);
+      border-color: var(--blue);
+    }
+
+    .feature-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .feature-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--gray-800);
+      flex: 1;
+    }
+
+    .feature-desc {
+      margin-top: 20px;
+      color: #475569;
+      font-size: 1.1rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+
+    .arrow {
+      font-size: 2rem;
+      color: var(--blue);
+      margin-left: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .content-panel {
+      display: none;
+    }
+    .content-panel.active {
+      display: block;
+    }
+
+    /* How it Works */
     .steps {
       display: flex;
       justify-content: center;
@@ -275,12 +409,15 @@
       margin: 0 auto 30px;
     }
 
+    /* Final CTA */
     .final-cta {
       background: linear-gradient(135deg, #a0e8ff, #b0f3a0);
       padding: 140px 40px;
       text-align: center;
       color: white;
     }
+
+    /* Contact */
     .contact-strip {
       background: linear-gradient(90deg, var(--blue), var(--green));
       color: white;
@@ -293,10 +430,17 @@
     }
     .contact-strip a { color: white; text-decoration: underline; font-weight: 700; }
 
+    /* Footer */
     footer {
       text-align: center;
       padding: 80px 40px;
       background: #f8faff;
+    }
+
+    @media (max-width: 1024px) {
+      .premium-grid { grid-template-columns: 1fr; }
+      .splash-area { position: static; }
+      .features-list-wrapper { height: auto; max-height: 900px; }
     }
 
     @media (max-width: 768px) {
@@ -306,31 +450,29 @@
       .section-title { font-size: 2.5rem; }
       .logo-img { height: 42px; }
       .logo-text { font-size: 2.1rem; }
-      .nav-links { gap: 20px; }
+      .nav-buttons { gap: 16px; }
       .steps { gap: 50px; }
+      .main-tabs { flex-direction: column; }
+      .main-tab { padding: 16px; }
+      .tab-container { flex-wrap: wrap; }
+      .splash-img { height: 400px; }
+      .splash-title { font-size: 2rem; }
     }
   </style>
 </head>
 <body>
 
-  <div class="bg-circle c1"></div>
-  <div class="bg-circle c2"></div>
-  <div class="bg-circle c3"></div>
-
-  <!-- Slim & Perfectly Centered Navbar -->
+  <!-- Navbar -->
   <header>
     <nav>
       <div class="logo-container">
-          <img src="teacherji_logo.png" alt="Teacherji Logo" class="logo-img">
-          <span class="logo-text">Teacherji</span>
+        <img src="teacherji_logo.png" alt="Teacherji Logo" class="logo-img">
+        <span class="logo-text">Teacherji</span>
       </div>
 
-      <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#how">How it Works</a>
-        <a href="#contact">Contact</a>
-        <a href="#" class="btn btn-primary">Start Free</a>
+      <div class="nav-buttons">
+        <a href="#contact" class="btn btn-green">Contact Sales</a>
+        <a href="#" class="btn btn-primary">Sign In</a>
       </div>
     </nav>
   </header>
@@ -345,12 +487,12 @@
       </p>
       <div class="hero-buttons">
         <a href="#" class="btn btn-primary">Start Practicing Now</a>
-        <a href="#pricing" class="btn btn-green">See Plans & Pricing</a>
+        <a href="#premium" class="btn btn-green">Explore Premium</a>
       </div>
     </div>
   </section>
 
-  <!-- Features -->
+  <!-- Why Students Love Teacherji (Glass Cards) -->
   <section id="features" class="section">
     <h2 class="section-title">Why Students Love Teacherji</h2>
     <div class="features-grid">
@@ -382,56 +524,169 @@
     </div>
   </section>
 
-  <!-- Pricing -->
-  <section id="pricing" class="section" style="background:#f8faff;">
-    <h2 class="section-title">Choose Your Happy Plan</h2>
-    <div class="pricing-grid">
-      <div class="price-card">
-        <div class="price-header ph-blue">
-          <h3>Free Plan</h3>
-          <div style="font-size:4rem;font-weight:900;">₹0</div>
+  <!-- Premium Features Section -->
+  <section id="premium" class="premium-section">
+    <div class="main-tabs">
+      <div class="main-tab active" data-target="student-panel">Student Features</div>
+      <div class="main-tab" data-target="teacher-panel">Teacher Features</div>
+    </div>
+
+    <div class="premium-grid">
+      <!-- Left: Splash Area -->
+      <div class="splash-area">
+        <div class="tab-container">
+          <button class="tab-btn active" data-tab="1">Structured Tests</button>
+          <button class="tab-btn" data-tab="2">Exam Questions</button>
+          <button class="tab-btn" data-tab="3">Adaptive Practice</button>
+          <button class="tab-btn" data-tab="4">Speed Analytics</button>
         </div>
-        <div style="padding:50px 40px;">
-          <ul style="list-style:none;margin:30px 0;font-size:1.1rem;">
-            <li style="padding:12px 0;border-bottom:1px solid #eee;">Unlimited tests</li>
-            <li style="padding:12px 0;border-bottom:1px solid #eee;">35,000+ questions</li>
-            <li style="padding:12px 0;border-bottom:1px solid #eee;">Custom test builder</li>
-            <li style="padding:12px 0;">Basic analytics</li>
-          </ul>
-          <a href="#" class="btn btn-primary" style="width:100%;">Start Free</a>
+
+        <div class="splash-wrapper">
+          <img id="splash" src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=600&fit=crop" alt="Premium Feature" class="splash-img">
+          <div class="splash-overlay"></div>
+          <div class="splash-text">
+            <h3 id="splash-title" class="splash-title">Structured Chapter-wise Tests</h3>
+            <p id="splash-desc" class="splash-desc">Navigate syllabus with clarity</p>
+          </div>
         </div>
       </div>
 
-      <div class="price-card popular" style="position:relative;">
-        <div class="price-header ph-green">
-          <h3>Premium Plan</h3>
-          <div style="font-size:4rem;font-weight:900;">₹2499</div>
-          <p style="font-size:1.3rem;opacity:0.9;">₹5000 → 50% Launch Offer</p>
-        </div>
-        <div style="padding:50px 40px;">
-          <ul style="list-style:none;margin:30px 0;font-size:1.1rem;">
-            <li style="padding:12px 0;border-bottom:1px solid #eee;">Everything in Free + Premium Qs</li>
-            <li style="padding:12px 0;border-bottom:1px solid #eee;">Advanced analytics dashboard</li>
-            <li style="padding:12px 0;border-bottom:1px solid #eee;">Revision tools & bookmarks</li>
-            <li style="padding:12px 0;">Monthly reports + motivation</li>
-          </ul>
-          <a href="#" class="btn btn-green" style="width:100%;">Get Premium Now</a>
-        </div>
-      </div>
+      <!-- Right: Features List -->
+      <div>
+        <h1 class="text-4xl font-bold text-gray-900 leading-tight mb-12">
+          Premium features that make<br>
+          <span style="background:linear-gradient(90deg,#00d4ff,#8cd867);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">JEE & NEET prep smarter</span>
+        </h1>
 
-      <div class="price-card">
-        <div class="price-header" style="background:linear-gradient(135deg,#a78bfa,#8b5cf6);">
-          <h3>Platinum Plan</h3>
-          <div style="font-size:4rem;font-weight:900;">₹3999</div>
-          <p style="font-size:1.2rem;opacity:0.9;">Coming Soon</p>
+        <!-- Student Panel -->
+        <div id="student-panel" class="content-panel active">
+          <div class="features-list-wrapper">
+            <div class="feature-item" onclick="toggleFeature(this)">
+              <div class="feature-header">
+                <div class="feature-title">Get a clear starting point with structured chapter-wise and subject-wise tests</div>
+                <span class="arrow">↓</span>
+              </div>
+              <p class="feature-desc">Makes the entire syllabus easier to navigate by breaking it into manageable, focused sections.</p>
+            </div>
+            <div class="feature-item" onclick="toggleFeature(this)">
+              <div class="feature-header">
+                <div class="feature-title">Practice exam-aligned questions that match JEE & NEET patterns</div>
+                <span class="arrow">↓</span>
+              </div>
+              <p class="feature-desc">Access to a large pool of high-quality, carefully curated questions designed for real exam preparation.</p>
+            </div>
+            <div class="feature-item" onclick="toggleFeature(this)">
+              <div class="feature-header">
+                <div class="feature-title">Build personalised improvement through targeted testing</div>
+                <span class="arrow">↓</span>
+              </div>
+              <p class="feature-desc">Tests adapt to strengths and weaknesses, helping focus effort where learning is needed most.</p>
+            </div>
+            <div class="feature-item" onclick="toggleFeature(this)">
+              <div class="feature-header">
+                <div class="feature-title">Strengthen exam-time speed using detailed timing insights</div>
+                <span class="arrow">↓</span>
+              </div>
+              <p class="feature-desc">Track time spent on each question and compare it with ideal benchmarks to improve pacing.</p>
+            </div>
+            <div class="feature-item" onclick="toggleFeature(this)">
+              <div class="feature-header">
+                <div class="feature-title">Track real progress with clean, visual performance analytics</div>
+                <span class="arrow">↓</span>
+              </div>
+              <p class="feature-desc">Topic-wise accuracy, improvement trends, and concept insights show exactly how preparation is advancing.</p>
+            </div>
+            <div class="feature-item" onclick="toggleFeature(this)">
+              <div class="feature-header">
+                <div class="feature-title">Make revision easier with saved important questions</div>
+                <span class="arrow">↓</span>
+              </div>
+              <p class="feature-desc">Bookmarking ensures quick access to priority questions during final revision.</p>
+            </div>
+            <div class="feature-item" onclick="toggleFeature(this)">
+              <div class="feature-header">
+                <div class="feature-title">Maintain daily practice with a consistent learning touchpoint</div>
+                <span class="arrow">↓</span>
+              </div>
+              <p class="feature-desc">A thoughtfully chosen Question of the Day keeps preparation active and steady.</p>
+            </div>
+            <div class="feature-item" onclick="toggleFeature(this)">
+              <div class="feature-header">
+                <div class="feature-title">Understand mistakes better with complete test histories</div>
+                <span class="arrow">↓</span>
+              </div>
+              <p class="feature-desc">Every attempt is saved with correct/incorrect responses and explanations for smarter learning.</p>
+            </div>
+          </div>
         </div>
-        <div style="padding:50px 40px;">
-          <ul style="list-style:none;margin:30px 0;font-size:1.1rem;">
-            <li style="padding:12px 0;border-bottom:1px solid #eee;">AI Adaptive Tests</li>
-            <li style="padding:12px 0;border-bottom:1px solid #eee;">Preparedness Calculator</li>
-            <li style="padding:12px 0;">Everything in Premium</li>
-          </ul>
-          <a href="#" class="btn btn-primary" style="width:100%;opacity:0.7;">Coming Soon</a>
+
+        <!-- Teacher Panel -->
+        <div id="teacher-panel" class="content-panel">
+          <div class="features-list-wrapper">
+            <div class="feature-item" onclick="toggleFeature(this)">
+              <div class="feature-header">
+                <div class="feature-title">Create structured tests instantly across chapters or full subjects</div>
+                <span class="arrow">↓</span>
+              </div>
+              <p class="feature-desc">Flexible test creation simplifies planning and assessment without manual effort.</p>
+            </div>
+            <div class="feature-item" onclick="toggleFeature(this)">
+              <div class="feature-header">
+                <div class="feature-title">Access a rich, exam-focused question bank for fresh, reliable content</div>
+                <span class="arrow">↓</span>
+              </div>
+              <p class="feature-desc">Well-curated sets eliminate repetition and ensure high-quality student practice.</p>
+            </div>
+            <div class="feature-item" onclick="toggleFeature(this)">
+              <div class="feature-header">
+                <div class="feature-title">View student-wise performance with clear accuracy and timing metrics</div>
+                <span class="arrow">↓</span>
+              </div>
+              <p class="feature-desc">Individual insights highlight how each learner is progressing and where support is needed.</p>
+            </div>
+            <div class="feature-item" onclick="toggleFeature(this)">
+              <div class="feature-header">
+                <div class="feature-title">Understand batch-level trends for better class planning</div>
+                <span class="arrow">↓</span>
+              </div>
+              <p class="feature-desc">Collective analytics reveal common weak areas, topper comparisons, and chapter-level gaps.</p>
+            </div>
+            <div class="feature-item" onclick="toggleFeature(this)">
+              <div class="feature-header">
+                <div class="feature-title">Compare scores easily with automatically organised test reports</div>
+                <span class="arrow">↓</span>
+              </div>
+              <p class="feature-desc">Ranks, difficulty breakdowns, and score distribution are instantly available.</p>
+            </div>
+            <div class="feature-item" onclick="toggleFeature(this)">
+              <div class="feature-header">
+                <div class="feature-title">Identify students needing extra attention through precise indicators</div>
+                <span class="arrow">↓</span>
+              </div>
+              <p class="feature-desc">Data-based signals highlight inconsistent performers and topic-level weaknesses.</p>
+            </div>
+            <div class="feature-item" onclick="toggleFeature(this)">
+              <div class="feature-header">
+                <div class="feature-title">Manage all tests and results from one central dashboard</div>
+                <span class="arrow">↓</span>
+              </div>
+              <p class="feature-desc">A single space keeps assessments, attempts, and performance data neatly organised.</p>
+            </div>
+            <div class="feature-item" onclick="toggleFeature(this)">
+              <div class="feature-header">
+                <div class="feature-title">Drive consistent student practice with daily engagement tools</div>
+                <span class="arrow">↓</span>
+              </div>
+              <p class="feature-desc">Automated daily practice prompts help maintain discipline across the classroom.</p>
+            </div>
+            <div class="feature-item" onclick="toggleFeature(this)">
+              <div class="feature-header">
+                <div class="feature-title">Deliver more meaningful feedback using detailed analytics</div>
+                <span class="arrow">↓</span>
+              </div>
+              <p class="feature-desc">Chapter-wise accuracy, speed, and error trends make guidance sharper and more effective.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -481,6 +736,81 @@
     </div>
     <p>© 2025 Teacherji • Made with joy for future IITians & Doctors</p>
   </footer>
+
+  <script>
+    // Main Tabs: Student vs Teacher
+    document.querySelectorAll('.main-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const target = tab.dataset.target;
+        document.querySelectorAll('.content-panel').forEach(panel => {
+          panel.classList.remove('active');
+        });
+        document.getElementById(target).classList.add('active');
+      });
+    });
+
+    // Inner Tabs (Splash)
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const tabId = btn.dataset.tab;
+        const splash = document.getElementById('splash');
+        const title = document.getElementById('splash-title');
+        const desc = document.getElementById('splash-desc');
+
+        const images = [
+          "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1581092580497-e0d23cbdf9dc?w=800&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1456518583165-02f2f9f8be47?w=800&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&h=600&fit=crop"
+        ];
+
+        const titles = [
+          "Structured Chapter-wise Tests",
+          "Real JEE & NEET Pattern Questions",
+          "Personalized Adaptive Testing",
+          "Master Speed & Accuracy"
+        ];
+
+        const descs = [
+          "Navigate syllabus with clarity",
+          "Practice like the real exam",
+          "Focus where you need it most",
+          "Beat the clock with insights"
+        ];
+
+        splash.style.opacity = '0';
+        setTimeout(() => {
+          splash.src = images[tabId - 1];
+          title.textContent = titles[tabId - 1];
+          desc.textContent = descs[tabId - 1];
+          splash.style.opacity = '1';
+        }, 300);
+      });
+    });
+
+    // Collapsible feature toggle
+    function toggleFeature(el) {
+      const desc = el.querySelector('.feature-desc');
+      const arrow = el.querySelector('.arrow');
+      const isOpen = desc.style.maxHeight;
+
+      // Close all in current panel
+      const panel = el.closest('.content-panel');
+      panel.querySelectorAll('.feature-desc').forEach(d => d.style.maxHeight = null);
+      panel.querySelectorAll('.arrow').forEach(a => a.textContent = '↓');
+
+      if (!isOpen) {
+        desc.style.maxHeight = desc.scrollHeight + 20 + "px";
+        arrow.textContent = '↑';
+      }
+    }
+  </script>
 
 </body>
 </html>
