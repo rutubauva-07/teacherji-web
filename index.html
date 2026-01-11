@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Teacherji – Your Happy Path to JEE & NEET Success</title>
+  <link rel="icon" type="image/png" href="teacherji_logo.png"/>
   <meta name="description" content="40,000+ Quality Questions • Adaptive Tests • Smart Analytics • Join thousands of happy students cracking JEE & NEET with a smile!"/>
 
   <!-- Fonts -->
@@ -44,7 +45,7 @@
     /* Header - Perfect vertical centering */
     header {
       position: fixed;
-      top: 10px;
+      top: 0%;
       left: 0;
       right: 0;
       height: 65px;
@@ -63,6 +64,7 @@
 
     .logo {
       display: flex;
+      margin-top: 5px;
       align-items: center;
       gap: 12px;
       font-size: 1.8rem;
@@ -84,6 +86,8 @@
     }
 
     .nav-actions {
+     
+      margin-top: 7px;
       display: flex;
       align-items: center;
       gap: 16px;
@@ -100,7 +104,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 44px; /* Ensures consistent height for perfect centering */
+      min-height: 44px;
     }
 
     .btn-solid {
@@ -191,10 +195,10 @@
       transition: all 0.4s ease;
       display: flex;
       flex-direction: column;
-      justify-content: center;     /* Centers content vertically */
-      align-items: center;         /* Centers content horizontally */
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      min-height: 320px;           /* Gives consistent height for better centering */
+      min-height: 320px;
     }
 
     .feature-card:hover {
@@ -399,11 +403,13 @@
     }
 
     .splash img {
-      width: 100%;
-      height: 560px;
-      object-fit: cover;
-      display: block;
-    }
+    width: 100%;
+    height: 100%;                    /* container ke full height le lega */
+    object-fit: contain;             /* ← yeh sabse important change */
+    object-position: center;
+    background: #000;                /* black bars ke liye */
+    display: block;
+  }
 
     .splash-overlay {
       position: absolute;
@@ -495,7 +501,7 @@
       margin: 0 auto;
     }
 
-    .step-number {
+    .step-number {  
       width: 100px;
       height: 100px;
       border-radius: 50%;
@@ -763,10 +769,7 @@
       <div class="premium-grid">
         <div class="image-area">
           <div class="image-tabs" id="image-tabs">
-            <button class="image-tab active" data-id="s1">Chapter-wise Tests</button>
-            <button class="image-tab" data-id="s2">Exam Pattern Tests</button>
-            <button class="image-tab" data-id="s3">Performance Analytics</button>
-            <button class="image-tab" data-id="s4">Test History Review</button>
+            <!-- These will be dynamically updated by JavaScript -->
           </div>
           <div class="splash">
             <img id="splash-img" src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=600&fit=crop" alt="Feature">
@@ -998,7 +1001,91 @@
   </footer>
 
   <script>
-    // Main tabs
+    // Teacher & Student tab configurations
+    const studentTabs = [
+      { id: 's1', title: 'Chapter-wise Tests', desc: 'Master one topic at a time' },
+      { id: 's2', title: 'Exam Pattern Tests', desc: 'Practice like the real exam' },
+      { id: 's3', title: 'Performance Analytics', desc: 'See your growth clearly' },
+      { id: 's4', title: 'Test History Review', desc: 'Learn from every attempt' }
+    ];
+
+    const teacherTabs = [
+      { id: 't1', title: 'Instant Test Creation', desc: 'Create tests in seconds' },
+      { id: 't2', title: 'Student Performance', desc: 'Track every student\'s progress' },
+      { id: 't3', title: 'Batch Analytics', desc: 'Understand class trends' },
+      { id: 't4', title: 'Central Dashboard', desc: 'Everything in one place' }
+    ];
+
+    const studentConfig = {
+      images: [
+        "images/student1.jpeg",
+        "images/student2.jpeg",
+        "images/student3.jpeg",
+        "images/student4.jpeg"
+      ]
+    };
+
+    const teacherConfig = {
+      images: [
+        "images/teacher1.jpeg",
+        "images/teacher2.jpeg",
+        "images/teacher3.jpeg",
+        "images/teacher4.jpeg"
+      ]
+    };
+
+    // Function to populate image tabs
+    function populateImageTabs(tabsArray) {
+      const tabsContainer = document.getElementById('image-tabs');
+      tabsContainer.innerHTML = ''; // Clear existing tabs
+
+      tabsArray.forEach((tab, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'image-tab';
+        btn.classList.toggle('active', index === 0);
+        btn.dataset.id = tab.id;
+        btn.textContent = tab.title;
+        tabsContainer.appendChild(btn);
+      });
+
+      // Re-attach event listeners after repopulating
+      attachImageTabListeners();
+    }
+
+    // Update splash image & text
+    function updateSplash(id) {
+      const isStudent = id.startsWith('s');
+      const config = isStudent ? studentConfig : teacherConfig;
+      const tabs = isStudent ? studentTabs : teacherTabs;
+      
+      const index = tabs.findIndex(t => t.id === id);
+      if (index === -1) return;
+
+      const img = document.getElementById('splash-img');
+      const title = document.getElementById('splash-title');
+      const desc = document.getElementById('splash-desc');
+
+      img.style.opacity = 0;
+      setTimeout(() => {
+        img.src = config.images[index];
+        title.textContent = tabs[index].title;
+        desc.textContent = tabs[index].desc;
+        img.style.opacity = 1;
+      }, 300);
+    }
+
+    // Attach listeners to image tabs (called after populate)
+    function attachImageTabListeners() {
+      document.querySelectorAll('.image-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.image-tab').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          updateSplash(btn.dataset.id);
+        });
+      });
+    }
+
+    // Main tabs (Student / Teacher)
     document.querySelectorAll('.tab-main').forEach(tab => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.tab-main').forEach(t => t.classList.remove('active'));
@@ -1008,71 +1095,28 @@
         document.getElementById('student').style.display = target === 'student' ? 'flex' : 'none';
         document.getElementById('teacher').style.display = target === 'teacher' ? 'flex' : 'none';
 
-        // Reset image tabs to first of new section
-        const firstId = target === 'student' ? 's1' : 't1';
-        updateSplash(firstId);
-        document.querySelectorAll('.image-tab').forEach(b => {
-          b.classList.toggle('active', b.dataset.id === firstId);
-        });
+        // Switch tabs content & reset to first tab
+        if (target === 'student') {
+          populateImageTabs(studentTabs);
+          updateSplash('s1');
+        } else {
+          populateImageTabs(teacherTabs);
+          updateSplash('t1');
+        }
       });
     });
 
-    // Image tabs
-    document.querySelectorAll('.image-tab').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.image-tab').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        updateSplash(btn.dataset.id);
-      });
-    });
+    // Initialize with Student view
+    populateImageTabs(studentTabs);
+    updateSplash('s1');
 
-    const studentConfig = {
-      images: [
-        "https://images.unsplash.com/photo-1501504905252-473c47e087f8?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1581092580497-e0d23cbdf9dc?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1456518583165-02f2f9f8be47?w=800&h=600&fit=crop"
-      ],
-      titles: ["Chapter-wise Tests", "Exam Pattern Tests", "Performance Analytics", "Test History Review"],
-      descs: ["Master one topic at a time", "Practice like the real exam", "See your growth clearly", "Learn from every attempt"]
-    };
-
-    const teacherConfig = {
-      images: [
-        "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1516321310764-8a2393a5759e?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop"
-      ],
-      titles: ["Instant Test Creation", "Student Performance View", "Batch Analytics", "Central Dashboard"],
-      descs: ["Create tests in seconds", "Track every student's progress", "Understand class trends", "Everything in one place"]
-    };
-
-    function updateSplash(id) {
-      const config = id.startsWith('s') ? studentConfig : teacherConfig;
-      const index = parseInt(id.slice(1)) - 1;
-
-      const img = document.getElementById('splash-img');
-      const title = document.getElementById('splash-title');
-      const desc = document.getElementById('splash-desc');
-
-      img.style.opacity = 0;
-      setTimeout(() => {
-        img.src = config.images[index];
-        title.textContent = config.titles[index];
-        desc.textContent = config.descs[index];
-        img.style.opacity = 1;
-      }, 300);
-    }
-
-    // Accordion
+    // Accordion functionality
     document.querySelectorAll('.accordion-header').forEach(header => {
       header.addEventListener('click', () => {
         const item = header.parentElement;
         const body = item.querySelector('.accordion-body');
         const arrow = item.querySelector('.accordion-arrow');
 
-        // Close others in same panel
         const panel = item.closest('.features-accordion');
         panel.querySelectorAll('.accordion-body').forEach(b => {
           if (b !== body) {
