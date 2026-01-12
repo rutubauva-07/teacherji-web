@@ -660,8 +660,8 @@
           <div class="dropdown">
             <a href="#" class="btn btn-solid">Sign In</a>
             <div class="dropdown-content">
-              <a href="https://Onlinev2.teacherji.co.in/" class="dropdown-item">Student Sign In</a>
-              <a href="https://institute.teacherji.co.in/" class="dropdown-item">Teacher Sign In</a>
+              <a href="https://student.teacherji.co.in/" class="dropdown-item">Student Sign In</a>
+              <a href="https://teacher.teacherji.co.in/" class="dropdown-item">Teacher Sign In</a>
             </div>
           </div>
         </div>
@@ -678,8 +678,8 @@
         40,000+ top-quality questions • Personalized adaptive tests • Deep analytics • All with a smile!
       </p>
       <div class="hero-actions">
-        <a href="https://institute.teacherji.co.in/" class="btn btn-solid">I'm a Teacher</a>
-        <a href="https://Onlinev2.teacherji.co.in/" class="btn btn-green">I'm a Student</a>
+        <a href="https://teacher.teacherji.co.in/" class="btn btn-solid">I'm a Teacher</a>
+        <a href="https://student.teacherji.co.in/" class="btn btn-green">I'm a Student</a>
       </div>
     </div>
   </section>
@@ -1043,6 +1043,7 @@
   </footer>
 
   <script>
+
     // Teacher & Student tab configurations
     const studentTabs = [
       { id: 's1', title: 'Chapter-wise Tests', desc: 'Master one topic at a time' },
@@ -1076,7 +1077,6 @@
       ]
     };
 
-    // Function to populate image tabs
     function populateImageTabs(tabsArray) {
       const tabsContainer = document.getElementById('image-tabs');
       tabsContainer.innerHTML = ''; // Clear existing tabs
@@ -1090,11 +1090,9 @@
         tabsContainer.appendChild(btn);
       });
 
-      // Re-attach event listeners after repopulating
       attachImageTabListeners();
     }
 
-    // Update splash image & text
     function updateSplash(id) {
       const isStudent = id.startsWith('s');
       const config = isStudent ? studentConfig : teacherConfig;
@@ -1116,7 +1114,6 @@
       }, 300);
     }
 
-    // Attach listeners to image tabs (called after populate)
     function attachImageTabListeners() {
       document.querySelectorAll('.image-tab').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -1137,7 +1134,6 @@
         document.getElementById('student').style.display = target === 'student' ? 'flex' : 'none';
         document.getElementById('teacher').style.display = target === 'teacher' ? 'flex' : 'none';
 
-        // Switch tabs content & reset to first tab
         if (target === 'student') {
           populateImageTabs(studentTabs);
           updateSplash('s1');
@@ -1148,11 +1144,10 @@
       });
     });
 
-    // Initialize with Student view
     populateImageTabs(studentTabs);
     updateSplash('s1');
 
-    // Accordion functionality
+
     document.querySelectorAll('.accordion-header').forEach(header => {
       header.addEventListener('click', () => {
         const item = header.parentElement;
