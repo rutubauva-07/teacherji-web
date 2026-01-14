@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sign In / Register - Teacherji</title>
+  <link rel="icon" type="image/png" href="teacherji_logo.png"/>
+
+  <!-- Nunito Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root {
+      --blue: #00d4ff;
+      --green: #8cd867;
+      --green-dark: #6ab846;
+      --white: #ffffff;
+      --off-white: #f9fcff;
+      --light-gray: #f1f5f9;
+      --mid-gray: #e2e8f0;
+      --dark-gray: #334155;
+      --text: #1e293b;
+      --orange: #f97316;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #f0faff, #f8fff5);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: var(--text);
+    }
+
+    .auth-container {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+      width: 100%;
+      max-width: 480px;
+      overflow: hidden;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      background: var(--light-gray);
+      border-bottom: 1px solid var(--mid-gray);
+    }
+
+    .tab {
+      flex: 1;
+      padding: 18px;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: var(--dark-gray);
+      position: relative;
+    }
+
+    .tab.active {
+      color: var(--blue);
+      background: white;
+    }
+
+    .tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--blue);
+      border-radius: 4px 4px 0 0;
+    }
+
+    /* Content */
+    .tab-content {
+      padding: 40px 32px;
+      background: white;
+    }
+
+    .logo-container {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .logo-img {
+      height: 80px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      color: var(--text);
+      text-align: center;
+    }
+
+    .subtitle {
+      color: var(--dark-gray);
+      text-align: center;
+      margin-bottom: 32px;
+      font-size: 1.05rem;
+    }
+
+    .orange-highlight {
+      color: var(--orange);
+      font-weight: 600;
+    }
+
+    /* Input & Label */
+    .input-group {
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 16px 14px 48px;
+      border: 2px solid var(--mid-gray);
+      border-radius: 12px;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.15);
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--dark-gray);
+      font-size: 1.3rem;
+    }
+
+    /* Primary Button (OTP / Sign In) */
+    .btn-primary {
+      width: 100%;
+      padding: 16px;
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 24px 0 16px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: #00c0e6;
+      transform: translateY(-2px);
+    }
+
+    /* Secondary Button (Continue with Email / Back to Mobile) */
+    .btn-secondary {
+      width: 100%;
+      padding: 14px;
+      background: white;
+      border: 2px solid var(--blue);
+      color: var(--blue);
+      border-radius: 12px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(0, 212, 255, 0.08);
+      transform: translateY(-2px);
+    }
+
+    /* Or divider */
+    .divider {
+      text-align: center;
+      color: var(--dark-gray);
+      margin: 24px 0;
+      font-size: 1rem;
+    }
+
+    /* Links */
+    .link {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .link:hover {
+      color: #00c0e6;
+      text-decoration: underline;
+    }
+
+    .forgot-link {
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    .back-link {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    /* Register Form - Improved Radio Section */
+    .radio-section {
+      margin: 32px 0;
+    }
+
+    .radio-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .radio-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.05rem;
+      color: var(--text);
+      cursor: pointer;
+      padding: 12px 16px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      background: rgba(0, 0, 0, 0.02);
+    }
+
+    .radio-label:hover {
+      background: rgba(0, 212, 255, 0.08);
+    }
+
+    .radio-label input {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--blue);
+      cursor: pointer;
+    }
+
+    /* Form Buttons */
+    .form-buttons {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .btn-submit {
+      flex: 1;
+      padding: 16px;
+      background: var(--green);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-clear {
+      flex: 1;
+      padding: 16px;
+      background: white;
+      border: 2px solid var(--mid-gray);
+      color: var(--dark-gray);
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-clear:hover {
+      background: var(--light-gray);
+    }
+
+    @media (max-width: 480px) {
+      .auth-container {
+        border-radius: 16px;
+      }
+      .tab-content {
+        padding: 32px 24px;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+      .form-buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-container">
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <div class="tab active" id="tab-register">Register</div>
+      <div class="tab" id="tab-login">Login</div>
+    </div>
+
+    <!-- Login with Mobile (Default) -->
+    <div class="tab-content" id="login-mobile">
+      <div class="logo-container">
+        <img src="teacherji_logo.png" alt="Teacherji" class="logo-img">
+      </div>
+
+      <h1>Login with Mobile</h1>
+      <p class="subtitle">
+        We will send you a One Time Password on your<br>
+        <span class="orange-highlight">registered mobile number</span>
+      </p>
+
+      <div class="input-group">
+        <span class="input-icon"><i class="fas fa-phone"></i></span>
+        <input type="tel" placeholder="Enter mobile number" required>
+      </div>
+
+      <button class="btn-primary">
+        <i class="fas fa-lock"></i> Get OTP
+      </button>
+
+      <div class="divider">or continue with</div>
+
+      <button class="btn-secondary" id="switch-to-email">
+        <i class="fas fa-envelope"></i> Continue with email
+      </button>
+
+      <div class="forgot-link">
+        <a href="#" class="link">Forgot password?</a>
+      </div>
+    </div>
+
+    <!-- Login with Email -->
+    <div class="tab-content" id="login-email" style="display: none;">
+      <div class="logo-container">
+        <img src="teacherji_logo.png" alt="Teacherji" class="logo-img">
+      </div>
+
+      <h1>Login with Email</h1>
+
+      <div class="input-group">
+        <span class="input-icon"><i class="fas fa-envelope"></i></span>
+        <input type="email" placeholder="Enter your email address" required>
+      </div>
+
+      <div class="input-group">
+        <span class="input-icon"><i class="fas fa-lock"></i></span>
+        <input type="password" placeholder="Enter your password" required>
+      </div>
+
+      <div class="forgot-link">
+        <a href="#" class="link">Forgot password?</a>
+      </div>
+
+      <button class="btn-primary">
+        <i class="fas fa-sign-in-alt"></i> Sign In
+      </button>
+
+      <div class="back-link">
+        <a href="#" class="link" id="switch-to-mobile">
+          <i class="fas fa-arrow-left"></i> Back to Mobile Login
+        </a>
+      </div>
+    </div>
+
+    <!-- Register Content -->
+    <div class="tab-content" id="register-content" style="display: none;">
+      <div class="logo-container">
+        <img src="teacherji_logo.png" alt="Teacherji" class="logo-img">
+      </div>
+
+      <h1>Create Your Account</h1>
+
+      <div class="input-group">
+        <label>Your first name</label>
+        <input type="text" placeholder="Your first name" required>
+      </div>
+
+      <div class="input-group">
+        <label>Your last name</label>
+        <input type="text" placeholder="Your last name" required>
+      </div>
+
+      <div class="input-group">
+        <label>Your email id</label>
+        <input type="email" placeholder="Your email id" required>
+      </div>
+
+      <div class="input-group">
+        <label>Your mobile number</label>
+        <input type="tel" placeholder="Your mobile number" required>
+        <small style="color: var(--orange); margin-top: 6px; display: block; font-size: 0.95rem;">
+          (OTP will be sent to this number for verification)
+        </small>
+      </div>
+
+      <div class="radio-section">
+        <label>What are you preparing for?</label>
+        <div class="radio-options">
+          <label class="radio-label">
+            <input type="radio" name="exam" value="pcmb" required> All (PCMB)
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="exam" value="jee"> JEE (PCM)
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="exam" value="neet"> NEET (PCB)
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="exam" value="cet"> CET (PCM)
+          </label>
+        </div>
+      </div>
+
+      <div class="form-buttons">
+        <button class="btn-submit">Submit ✓</button>
+        <button class="btn-clear">Clear Form</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Tab switching (Register / Login)
+    document.getElementById('tab-register').addEventListener('click', () => {
+      document.getElementById('tab-register').classList.add('active');
+      document.getElementById('tab-login').classList.remove('active');
+      document.getElementById('register-content').style.display = 'block';
+      document.getElementById('login-mobile').style.display = 'none';
+      document.getElementById('login-email').style.display = 'none';
+    });
+
+    document.getElementById('tab-login').addEventListener('click', () => {
+      document.getElementById('tab-login').classList.add('active');
+      document.getElementById('tab-register').classList.remove('active');
+      document.getElementById('login-mobile').style.display = 'block';
+      document.getElementById('register-content').style.display = 'none';
+      document.getElementById('login-email').style.display = 'none';
+    });
+
+    // Switch between Mobile OTP and Email Login
+    document.getElementById('switch-to-email').addEventListener('click', () => {
+      document.getElementById('login-mobile').style.display = 'none';
+      document.getElementById('login-email').style.display = 'block';
+    });
+
+    document.getElementById('switch-to-mobile').addEventListener('click', () => {
+      document.getElementById('login-email').style.display = 'none';
+      document.getElementById('login-mobile').style.display = 'block';
+    });
+
+    // Clear form
+    document.querySelector('.btn-clear')?.addEventListener('click', () => {
+      document.querySelectorAll('input').forEach(input => {
+        if (input.type !== 'radio') input.value = '';
+      });
+      document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+    });
+  </script>
+
+</body>
+</html>

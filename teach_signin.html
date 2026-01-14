@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Teacherji Institute Login</title>
+  <link rel="icon" type="image/png" href="teacherji_logo.png"/>
+
+  <!-- Nunito Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    :root {
+      --blue: #00d4ff;
+      --green: #8cd867;
+      --green-dark: #6ab846;
+      --white: #ffffff;
+      --off-white: #f9fcff;
+      --light-gray: #f1f5f9;
+      --mid-gray: #e2e8f0;
+      --dark-gray: #334155;
+      --text: #1e293b;
+      --orange: #f97316;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #f0faff, #f8fff5);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      color: var(--text);
+    }
+
+    .auth-container {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+      width: 100%;
+      max-width: 480px;
+      overflow: hidden;
+    }
+
+    .logo-container {
+      text-align: center;
+      padding: 32px 0 16px;
+    }
+
+    .logo-img {
+      height: 80px;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin: 16px 0 8px;
+      color: var(--text);
+      text-align: center;
+    }
+
+    .subtitle {
+      color: var(--dark-gray);
+      text-align: center;
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+    }
+
+    .input-group {
+      margin: 0 32px 24px;
+      position: relative;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 16px 14px 48px;
+      border: 2px solid var(--mid-gray);
+      border-radius: 12px;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 4px rgba(0, 212, 255, 0.15);
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--dark-gray);
+      font-size: 1.3rem;
+    }
+
+    .note {
+      color: var(--orange);
+      font-size: 0.95rem;
+      margin-top: 6px;
+      display: block;
+      text-align: center;
+    }
+
+    .btn-primary {
+      width: calc(100% - 64px);
+      margin: 0 32px 16px;
+      padding: 16px;
+      background: var(--blue);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: #00c0e6;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      width: calc(100% - 64px);
+      margin: 0 32px 24px;
+      padding: 14px;
+      background: white;
+      border: 2px solid var(--blue);
+      color: var(--blue);
+      border-radius: 12px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(0, 212, 255, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .link {
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .link:hover {
+      color: #00c0e6;
+      text-decoration: underline;
+    }
+
+    .divider {
+      text-align: center;
+      color: var(--dark-gray);
+      margin: 24px 0;
+      font-size: 1rem;
+    }
+
+    .forgot-link, .signup-link {
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    .back-link {
+      text-align: center;
+      margin: 24px 0;
+    }
+
+    @media (max-width: 480px) {
+      .auth-container {
+        border-radius: 16px;
+      }
+      .tab-content {
+        padding: 32px 24px;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="auth-container">
+
+    <!-- Main Login Screen -->
+    <div id="main-login">
+      <div class="logo-container">
+        <img src="teacherji_logo.png" alt="Teacherji" class="logo-img">
+      </div>
+
+      <h1>Login to your institute account</h1>
+
+      <div class="input-group">
+        <span class="input-icon"><i class="fas fa-envelope"></i></span>
+        <input type="email" placeholder="Enter your email address" required>
+      </div>
+
+      <div class="input-group">
+        <span class="input-icon"><i class="fas fa-lock"></i></span>
+        <input type="password" placeholder="Enter your password" required>
+      </div>
+
+      <div class="forgot-link">
+        <a href="#" class="link">Forgot password?</a>
+      </div>
+
+      <button class="btn-primary" id="btn-signin">
+        <i class="fas fa-envelope"></i> Sign In
+      </button>
+
+      <div class="divider">or continue with</div>
+
+      <button class="btn-secondary" id="btn-mobile-otp">
+        <i class="fas fa-phone"></i> Continue with mobile OTP
+      </button>
+
+      <div class="signup-link">
+        <span>Don't have an account?</span><br>
+        <a href="#" class="link" id="btn-signup">Sign up</a>
+      </div>
+    </div>
+
+    <!-- OTP Verification Screen -->
+    <div id="otp-screen" style="display: none;">
+      <div class="logo-container">
+        <img src="teacherji_logo.png" alt="Teacherji" class="logo-img">
+      </div>
+
+      <h1>OTP Verification</h1>
+
+      <p class="subtitle">
+        We will send you a One Time Password on your<br>
+        <span class="orange-highlight">registered mobile number</span>
+      </p>
+
+      <div class="input-group">
+        <input type="tel" placeholder="Enter mobile number" required>
+      </div>
+
+      <button class="btn-primary">
+        <i class="fas fa-lock"></i> Get OTP
+      </button>
+
+      <div class="back-link">
+        <a href="#" class="link" id="back-to-main">
+          <i class="fas fa-arrow-left"></i> Back to Login
+        </a>
+      </div>
+
+      <div class="signup-link">
+        <span>Don't have an account?</span><br>
+        <a href="#" class="link" id="btn-signup-from-otp">Sign up</a>
+      </div>
+    </div>
+
+    <!-- Register Institute Screen -->
+    <div id="register-screen" style="display: none;">
+      <div class="logo-container">
+        <img src="teacherji_logo.png" alt="Teacherji" class="logo-img">
+      </div>
+
+      <h1>Register your Institute</h1>
+
+      <div class="input-group">
+        <span class="input-icon"><i class="fas fa-user"></i></span>
+        <input type="text" placeholder="Enter your first name" required>
+      </div>
+
+      <div class="input-group">
+        <span class="input-icon"><i class="fas fa-user"></i></span>
+        <input type="text" placeholder="Enter your last name" required>
+      </div>
+
+      <div class="input-group">
+        <span class="input-icon"><i class="fas fa-envelope"></i></span>
+        <input type="email" placeholder="Enter your email id" required>
+      </div>
+
+      <div class="input-group">
+        <span class="input-icon"><i class="fas fa-phone"></i></span>
+        <input type="tel" placeholder="Enter mobile number" required>
+        <small class="note">
+          Verification OTP will be send on mobile number
+        </small>
+      </div>
+
+      <div class="input-group">
+        <span class="input-icon"><i class="fas fa-building"></i></span>
+        <input type="text" placeholder="Enter your institute/class name" required>
+      </div>
+
+      <button class="btn-primary">
+        <i class="fas fa-plus"></i> Create account
+      </button>
+
+      <div class="signup-link">
+        <span>Already have an account?</span><br>
+        <a href="#" class="link" id="back-to-main-from-register">Sign In</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Show/hide screens
+    function showScreen(id) {
+      document.querySelectorAll('#main-login, #otp-screen, #register-screen')
+        .forEach(el => el.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+    }
+
+    // Main Login → Mobile OTP
+    document.getElementById('btn-mobile-otp')?.addEventListener('click', () => {
+      showScreen('otp-screen');
+    });
+
+    // Main Login → Register
+    document.getElementById('btn-signup')?.addEventListener('click', () => {
+      showScreen('register-screen');
+    });
+
+    // OTP Screen → Back to Main
+    document.getElementById('back-to-main')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      showScreen('main-login');
+    });
+
+    // OTP Screen → Register
+    document.getElementById('btn-signup-from-otp')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      showScreen('register-screen');
+    });
+
+    // Register → Back to Main
+    document.getElementById('back-to-main-from-register')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      showScreen('main-login');
+    });
+
+    // Sign In button (dummy - just shows alert)
+    document.getElementById('btn-signin')?.addEventListener('click', () => {
+      alert("Sign In clicked! (This is UI only - add real backend here)");
+    });
+  </script>
+
+</body>
+</html>
